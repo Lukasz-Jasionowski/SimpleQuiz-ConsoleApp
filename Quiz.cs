@@ -9,7 +9,32 @@ namespace QuizConsoleApp
             this.questions = questions;
         }
 
-        public void DisplayQuestion(Question question)
+        public void StartQuiz()
+        {
+            Console.WriteLine("Welcome to the Quiz!");
+            int questionNumber = 1;
+
+            foreach (Question question in questions)
+            {
+                Console.WriteLine($"Quesion {questionNumber++}");
+                DisplayQuestion(question);
+                int userChoice = GetUserChoice();
+                if (question.IsCorrectAnswer(userChoice))
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nCorrect\n");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"\nWrong! The correct answer was: {question.CorrectAnswerIndex + 1}. {question.Answers[question.CorrectAnswerIndex]}\n");
+                    Console.ResetColor();
+                }
+            }
+        }
+
+        private void DisplayQuestion(Question question)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("╔═════════════════════════════════════════════════════════════════════════╗");
