@@ -27,5 +27,18 @@ namespace QuizConsoleApp
                 Console.WriteLine($". {question.Answers[i]}");
             }
         }
+
+        private int GetUserChoice()
+        {
+            Console.Write("Your answer (number): ");
+            string input = Console.ReadLine();
+            int choice = 0;
+            while (!int.TryParse(input, out choice) || choice < 1 || choice > 4)
+            {
+                Console.Write("Invalid choice. Please eneter a number between 1 and 4: ");
+                input = Console.ReadLine();
+            }
+            return choice - 1; //adjust to index array
+        }
     }
 }
