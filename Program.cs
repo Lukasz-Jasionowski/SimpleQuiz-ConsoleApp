@@ -4,7 +4,17 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello");
+            Question[] questions = new Question[]
+            {
+                new Question(
+                    "What is the capital of France?",
+                    ["Paris","Berlin","London","Madrid"],
+                    0
+                )
+            };
+
+            Quiz myQuiz = new Quiz(questions);
+            myQuiz.DisplayQuestion(questions[0]);
         }
     }
 }
